@@ -109,10 +109,12 @@ def run_model(data,args,conditional_input=None):
                     feed_dict = {X:x}
                     loss,_ = sess.run(variables,feed_dict = feed_dict)
                     
-                    if(j%20 == 0):
+                    if(j%5 == 0):
                         print("iteration %d, Loss = %f" %(j,loss))
-                    if (j+1)%200 == 0:
+                    if (j+1)%60 == 0:
                         saver.save(sess, args.ckpt_file)
+                    if (j+1)%300 == 0: 
+                        saver.save(sess, args.ckpt_file)   
                         get_sample(sess,X,pred,args)
                 print("epoch %d, Loss = %f" %(i,loss))
             get_sample(sess,X,pred,args)
